@@ -1,0 +1,51 @@
+{
+  "name": "rich-markdown-editor",
+  "displayName": "Rich Markdown Editor",
+  "version": "1.0.0",
+  "description": "Edit markdown files in preview mode with a rich text editor",
+  "main": "./out/index.js",
+	"engines": {
+		"vscode": "^1.52.0"
+	},
+  "activationEvents": [
+		"onCustomEditor:markdownCustom.richMarkdownEditor"
+	],
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "markdownCustom.richMarkdownEditor",
+				"displayName": "Rich Markdown Editor",
+				"selector": [
+					{
+						"filenamePattern": "*.md"
+					},
+          {
+						"filenamePattern": "*.markdown"
+					}
+				]
+			}
+		]
+	},  
+  "keywords": [
+    "rich",
+    "markdown",
+    "editor",
+    "preview"
+  ],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"watch": "tsc -w -p ./"
+	},
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "@types/vscode": "^1.65.0",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^8.11.0",
+    "typescript": "^4.6.2"
+  }
+}
