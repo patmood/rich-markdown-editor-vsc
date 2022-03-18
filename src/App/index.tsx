@@ -1,3 +1,7 @@
 import * as React from "react"
 
-export const Greet = () => <h1>Hello, world!</h1>
+import Editor from "rich-markdown-editor"
+
+export function App() {
+  return <Editor defaultValue="Hello world!" />
+}
