@@ -94,7 +94,7 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
   private getHtmlForWebview(webview: vscode.Webview): string {
     // Local path to script and css for the webview
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this.context.extensionUri, "build", "client.js")
+      vscode.Uri.joinPath(this.context.extensionUri, "out", "client.js")
     )
 
     // Use a nonce to whitelist which scripts can be run
@@ -117,6 +117,7 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
 			</head>
 			<body>
 				<h1>RICH MARKDOWN EDITOR BOOGERS</h1>
+        <main id="app">Loading...</main>
 				
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>

@@ -36,13 +36,15 @@
   "license": "ISC",
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "npm run esbuild-extension && npm run esbuild-client",
+    "compile": "npm run esbuild-client && npm run esbuild-extension",
     "esbuild-extension": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
     "esbuild-client": "esbuild ./src/client.ts --bundle --outfile=out/client.js --sourcemap --target=chrome58,firefox57,safari11,edge16",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
     "@types/vscode": "^1.65.0",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
