@@ -35,10 +35,11 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "npm run esbuild-client && npm run esbuild-extension",
-    "esbuild-extension": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --sourcemap",
-    "esbuild-client": "esbuild ./src/client.ts --bundle --outfile=out/client.js --sourcemap",
+    "vscode:prepublish": "npm run build",
+    "build": "npm run esbuild-client && npm run esbuild-extension",
+    "esbuild-extension": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "esbuild-client": "esbuild ./src/client.tsx --bundle --outfile=out/client.js",
+    "watch": "npm run esbuild-client -- --watch --sourcemap",
     "lint": "eslint . --ext .ts,.tsx"
   },
   "devDependencies": {

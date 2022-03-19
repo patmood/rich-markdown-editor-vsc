@@ -73,15 +73,7 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
     webviewPanel.webview.onDidReceiveMessage((e) => {
       switch (e.type) {
         case "add":
-          // TODO
-          console.log(e)
-          //   return this.updateTextDocument(document, text)
-          return
-
-        case "delete":
-          // TODO
-          //   return this.updateTextDocument(document, text)
-          return
+          return this.updateTextDocument(document, e.text)
       }
     })
 
@@ -116,16 +108,14 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
 				<title>Rich Markdown Editor</title>
 			</head>
 			<body>
-				<h1>RICH MARKDOWN EDITOR BOOGERS</h1>
-        <main id="app">Loading...</main>
-				
+        <main id="app">Loading...</main>				
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`
   }
 
   /**
-   * Write out the json to a given document.
+   * Write out the text to a given document.
    */
   private updateTextDocument(document: vscode.TextDocument, text: string) {
     const edit = new vscode.WorkspaceEdit()
