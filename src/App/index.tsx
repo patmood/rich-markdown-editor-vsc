@@ -8,18 +8,14 @@ export function App({ vscode }: { vscode: any }) {
   const defaultValue = vscode.getState()?.text
   const [value, setValue] = useState(defaultValue)
 
-  const updateDocument = debounce((text) => {
+  const handleChange = debounce((getVal: () => string) => {
+    const text = getVal()
+    vscode.setState({ text })
     vscode.postMessage({
       type: "add",
       text,
     })
-  }, 200)
-
-  function handleChange(getVal: () => string) {
-    const text = getVal()
-    vscode.setState({ text })
-    updateDocument(text)
-  }
+  }, 300)
 
   useEffect(() => {
     function messageHandler(event: MessageEvent) {
@@ -28,9 +24,9 @@ export function App({ vscode }: { vscode: any }) {
       const { type, text } = message
       switch (type) {
         case "update":
-          // The editor trims whitespace, but vscode may add trailing newlines
-          // Trim to prevent re-renders
-          if (text.trim() !== currentText.trim()) {
+          // NOTE: if prettier is enabled, this will likely be triggered each save
+          if (text !== currentText) {
+            console.log("update")
             vscode.setState({ text })
             setValue(text)
           }
@@ -50,7 +46,6 @@ export function App({ vscode }: { vscode: any }) {
         defaultValue={defaultValue}
         value={value}
         onChange={handleChange}
-        onSave={() => console.log("save!")}
         autoFocus
       />
     </div>

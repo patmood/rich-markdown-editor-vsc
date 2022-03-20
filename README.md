@@ -15,14 +15,18 @@ This extension replaces the default code editor for markdown files with a rich v
 
 It uses the [rich-markdown-editor](https://github.com/outline/rich-markdown-editor) project generously open sourced by [Outline](https://www.getoutline.com/)
 
-**NOTE:** If you use `prettier` as your default formatter, you should disable it for markdown to prevent the cursor position from resetting on each format. Add this to your `settings.json`:
+**NOTE:** If you use “prettier” as your default formatter, you can disable it for markdown files to prevent the cursor position from resetting on each format. Add this to your `settings.json`:
 
 ```javascript
   "[markdown]": {
-    "editor.defaultFormatter": null
+    "editor.formatOnSave": false
   },
 ```
+
+---
 
 TODO:
 
 - Input background color is wrong in dark mode
+
+\
