@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react"
 
 import Editor from "rich-markdown-editor"
+import { debounce } from "../utils"
 import { vsCodeTheme } from "./theme"
-
-const PLACEHOLDER = "Enjoy that new doc smell..."
 
 export function App({ vscode }: { vscode: any }) {
   const defaultValue = vscode.getState()?.text
   const [value, setValue] = useState(defaultValue)
 
-  function handleChange(getVal: () => string) {
-    const text = getVal()
-    vscode.setState({ text })
+  const updateDocument = debounce((text) => {
     vscode.postMessage({
       type: "add",
       text,
     })
+  }, 200)
+
+  function handleChange(getVal: () => string) {
+    const text = getVal()
+    vscode.setState({ text })
+    updateDocument(text)
   }
 
   useEffect(() => {
@@ -25,10 +28,11 @@ export function App({ vscode }: { vscode: any }) {
       const { type, text } = message
       switch (type) {
         case "update":
-          // If the update came from another window, trigger editor rerender
-          if (text !== currentText) {
-            setValue(text)
+          // The editor trims whitespace, but vscode may add trailing newlines
+          // Trim to prevent re-renders
+          if (text.trim() !== currentText.trim()) {
             vscode.setState({ text })
+            setValue(text)
           }
           return
       }
@@ -41,7 +45,7 @@ export function App({ vscode }: { vscode: any }) {
   return (
     <div style={{ padding: 40, maxWidth: 825, margin: "0 auto" }}>
       <Editor
-        placeholder={PLACEHOLDER}
+        placeholder={"Blank canvas..."}
         theme={vsCodeTheme}
         defaultValue={defaultValue}
         value={value}

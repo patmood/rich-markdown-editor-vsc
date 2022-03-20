@@ -1,14 +1,6 @@
 import * as vscode from "vscode"
 
-export function getNonce() {
-  let text = ""
-  const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-  for (let i = 0; i < 32; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length))
-  }
-  return text
-}
+import { getNonce } from "./utils"
 
 /**
  * Provider for rich markdown editor.
@@ -106,6 +98,13 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>Rich Markdown Editor</title>
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+          }
+        </style>
 			</head>
 			<body>
         <main id="app">Loading...</main>				
