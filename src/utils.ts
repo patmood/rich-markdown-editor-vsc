@@ -1,3 +1,8 @@
+const STRIP_SLASH_REG = new RegExp(/^\\$/gm)
+const ADD_SLASH_REG = new RegExp(/^\n(\n+)/gm)
+const NEW_LINE_REG = new RegExp(/\n/g)
+const SLASH_REG = new RegExp(/\\/g)
+
 export function getNonce() {
   let text = ""
   const possible =
@@ -17,4 +22,26 @@ export function debounce(func: (...args: any) => any, timeout = 300) {
       func.apply(this, args)
     }, timeout)
   }
+}
+
+// https://github.com/outline/rich-markdown-editor/issues/532
+// https://github.com/outline/rich-markdown-editor/blob/3540af9f811a687c46ea82e0274a6286181da4f2/src/nodes/Paragraph.ts#L30
+export function outlineToMarkdown(outlineText = "") {
+  return outlineText.replace(STRIP_SLASH_REG, "")
+}
+
+export function markdownToOutline(markdownText: string) {
+  return markdownText.replace(ADD_SLASH_REG, (match, p1, offset, str) => {
+    const newSegment = p1.replace(NEW_LINE_REG, "\\\n")
+    return `\n${newSegment}`
+  })
+}
+
+export function stripSlashes(str = "") {
+  return str.replace(SLASH_REG, "")
+}
+
+export function isBasicallySame(a = "", b = "") {
+  // Remove slashes and trailing whitespace to compare outline and vanilla markdown strings
+  return a.replace(SLASH_REG, "").trim() === b.replace(SLASH_REG, "").trim()
 }
