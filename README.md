@@ -2,6 +2,10 @@
 
 Edit markdown files with a rich editor in the style of Dropbox Paper/Notion etc.
 
+<p align="center">
+<img src="demo.gif" width=75%>
+</p>
+
 Perfect for writing docs, authoring blog posts, and editing markdown website content.
 
 ## Features
@@ -24,4 +28,5 @@ It uses the [rich-markdown-editor](https://github.com/outline/rich-markdown-edit
     "editor.formatOnSave": false
   },
 ```
+
 
