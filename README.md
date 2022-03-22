@@ -25,9 +25,3 @@ It uses the [rich-markdown-editor](https://github.com/outline/rich-markdown-edit
   },
 ```
 
-## TODO
-
-- [ ] Input background color is wrong in dark mode
-- [ ] Add settings for font, size
-
-

@@ -1,5 +1,7 @@
 import * as vscode from "vscode"
 
+import { DEFAULT_FONT_FAMILY, DEFAULT_FONT_SIZE } from "./constants"
+
 import { getNonce } from "./utils"
 
 /**
@@ -79,6 +81,14 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
    * Get the static html used for the editor webviews.
    */
   private getHtmlForWebview(webview: vscode.Webview): string {
+    const fontSize = vscode.workspace
+      .getConfiguration("rich-markdown-editor")
+      .get("fontSize", DEFAULT_FONT_SIZE)
+
+    const fontFamily = vscode.workspace
+      .getConfiguration("rich-markdown-editor")
+      .get("fontSize", DEFAULT_FONT_FAMILY)
+
     // Local path to script and css for the webview
     const scriptUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this.context.extensionUri, "out", "client.js")
@@ -97,15 +107,18 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
 				Use a content security policy to only allow loading images from https or from our extension directory,
 				and only allow scripts that have a specific nonce.
 				-->
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
+				<meta http-equiv="Content-Security-Policy" content="style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}';">
 
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<title>Rich Markdown Editor</title>
         <style>
+          :root {
+            --rich-markdown-editor-font-family: ${fontFamily};
+          }
           body {
             margin: 0;
             padding: 0;
-            font-size: 16px;
+            font-size: ${fontSize};
           }
         </style>
 			</head>

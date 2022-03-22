@@ -24,7 +24,21 @@
           }
         ]
       }
-    ]
+    ],
+    "properties": {
+      "rich-markdown-editor.fontSize": {
+        "type": "string",
+        "markdownDescription": "Base font size",
+        "default": "16px",
+        "scope": "window"
+      },
+      "rich-markdown-editor.fontFamily": {
+        "type": "string",
+        "markdownDescription": "Font family for rendering markdown",
+        "default": "-apple-system, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
+        "scope": "window"
+      }
+    }
   },
   "keywords": [
     "rich",
