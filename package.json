@@ -7,6 +7,7 @@
   "engines": {
     "vscode": "^1.52.0"
   },
+  "publisher": "patmood",
   "repository": {
     "type": "git",
     "url": "https://github.com/patmood/rich-markdown-editor-vsc"
