@@ -23,7 +23,7 @@ It uses the [rich-markdown-editor](https://github.com/outline/rich-markdown-edit
 
 **NOTE:** If you use “prettier” as your default formatter, you can disable it for markdown files to prevent the cursor position from resetting on each format. Add this to your `settings.json`:
 
-```javascript
+```typescript
   "[markdown]": {
     "editor.formatOnSave": false
   },
