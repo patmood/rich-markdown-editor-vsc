@@ -2,9 +2,7 @@
 
 Edit markdown files with a rich editor in the style of Dropbox Paper/Notion etc.
 
-<p align="center">
-<img src="demo.gif" width=75%>
-</p>
+![Demo](demo.gif)
 
 Perfect for writing docs, authoring blog posts, and editing markdown website content.
 
