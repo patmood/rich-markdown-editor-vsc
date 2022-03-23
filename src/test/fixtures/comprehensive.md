@@ -1,7 +1,3 @@
----
-title: Hello world
----
-
 # Markdown: Syntax
 
 *   [Overview](#overview)
