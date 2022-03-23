@@ -1,4 +1,9 @@
-import { markdownToOutline, outlineToMarkdown } from "../utils"
+import {
+  getNonce,
+  markdownToOutline,
+  outlineToMarkdown,
+  stripSlashes,
+} from "../utils"
 
 import { FIXTURES } from "./fixtures"
 
@@ -8,3 +13,8 @@ for (const name in FIXTURES) {
     expect(outlineToMarkdown(markdownToOutline(content))).toEqual(content)
   })
 }
+
+it("generates a reasonable nonce", () => {
+  const nonce = getNonce()
+  expect(nonce.length).toBe(32)
+})

@@ -37,10 +37,6 @@ export function markdownToOutline(markdownText: string) {
   })
 }
 
-export function stripSlashes(str = "") {
-  return str.replace(SLASH_REG, "")
-}
-
 export function isBasicallySame(a = "", b = "") {
   // Remove slashes and trailing whitespace to compare outline and vanilla markdown strings
   return a.replace(SLASH_REG, "").trim() === b.replace(SLASH_REG, "").trim()
