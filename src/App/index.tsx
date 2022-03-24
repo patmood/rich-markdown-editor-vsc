@@ -7,7 +7,16 @@ import {
 } from "../utils"
 
 import Editor from "rich-markdown-editor"
+import prettier from "prettier/standalone"
+import prettierMd from "prettier/parser-markdown"
 import { vsCodeTheme } from "./theme"
+
+function formatText(text = "") {
+  return prettier.format(text, {
+    parser: "markdown",
+    plugins: [prettierMd],
+  })
+}
 
 export function App({ vscode }: { vscode: any }) {
   const defaultValue = vscode.getState()?.outlineText || ""
@@ -17,10 +26,11 @@ export function App({ vscode }: { vscode: any }) {
     const outlineText = getVal()
 
     const text = outlineToMarkdown(outlineText)
+    const formattedText = formatText(text)
     vscode.setState({ outlineText })
     vscode.postMessage({
       type: "add",
-      text,
+      text: formattedText,
     })
   }, 200)
 
@@ -29,12 +39,14 @@ export function App({ vscode }: { vscode: any }) {
       const message = event.data // The json data that the extension sent
       const currentText = vscode.getState()?.outlineText
       const { type, text } = message
-      const outlineText = markdownToOutline(text)
       switch (type) {
         case "update":
           // NOTE: if this gets triggered, the editor will re-render and lose the cursor position
           // Try to avoid if possible
-          if (!isBasicallySame(currentText, outlineText)) {
+          if (
+            !isBasicallySame(formatText(outlineToMarkdown(currentText)), text)
+          ) {
+            const outlineText = markdownToOutline(text)
             console.log("update")
             console.log({
               current: currentText?.trim(),
