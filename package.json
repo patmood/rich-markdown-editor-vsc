@@ -30,7 +30,8 @@
           {
             "filenamePattern": "*.markdown"
           }
-        ]
+        ],
+        "priority": "default"
       }
     ],
     "properties": {

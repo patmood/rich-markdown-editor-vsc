@@ -4,7 +4,6 @@ import {
   isBasicallySame,
   markdownToOutline,
   outlineToMarkdown,
-  stripSlashes,
 } from "../utils"
 
 import Editor from "rich-markdown-editor"
@@ -16,16 +15,6 @@ export function App({ vscode }: { vscode: any }) {
 
   const handleChange = debounce((getVal: () => string) => {
     const outlineText = getVal()
-
-    // === Check conversion ===
-    // const out = markdownToOutline(outlineToMarkdown(outlineText))
-    // if (!isBasicallySame(outlineText, out)) {
-    //   console.log("MISS-MATCH")
-    //   console.log({
-    //     source: stripSlashes(outlineText).trim(),
-    //     output: stripSlashes(out).trim(),
-    //   })
-    // }
 
     const text = outlineToMarkdown(outlineText)
     vscode.setState({ outlineText })
@@ -51,7 +40,7 @@ export function App({ vscode }: { vscode: any }) {
               current: currentText?.trim(),
               newtext: outlineText?.trim(),
             })
-            vscode.setState({ outlineText: currentText })
+            vscode.setState({ outlineText: outlineText })
             setValue(outlineText)
           }
           return
