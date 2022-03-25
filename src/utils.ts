@@ -1,3 +1,7 @@
+import frontMatter from "front-matter"
+import prettier from "prettier/standalone"
+import prettierMd from "prettier/parser-markdown"
+
 const STRIP_SLASH_REG = new RegExp(/^\\$/gm)
 const ADD_SLASH_REG = new RegExp(/^\n(\n+)/gm)
 const NEW_LINE_REG = new RegExp(/\n/g)
@@ -40,4 +44,11 @@ export function markdownToOutline(markdownText: string) {
 export function isBasicallySame(a = "", b = "") {
   // Remove slashes and trailing whitespace to compare outline and vanilla markdown strings
   return a.replace(SLASH_REG, "").trim() === b.replace(SLASH_REG, "").trim()
+}
+
+export function formatText(text = "") {
+  return prettier.format(text, {
+    parser: "markdown",
+    plugins: [prettierMd],
+  })
 }

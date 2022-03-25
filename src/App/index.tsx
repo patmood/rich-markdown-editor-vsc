@@ -1,36 +1,25 @@
 import React, { useEffect, useState } from "react"
 import {
   debounce,
+  formatText,
   isBasicallySame,
   markdownToOutline,
   outlineToMarkdown,
 } from "../utils"
 
 import Editor from "rich-markdown-editor"
-import prettier from "prettier/standalone"
-import prettierMd from "prettier/parser-markdown"
 import { vsCodeTheme } from "./theme"
-
-function formatText(text = "") {
-  return prettier.format(text, {
-    parser: "markdown",
-    plugins: [prettierMd],
-  })
-}
 
 export function App({ vscode }: { vscode: any }) {
   const defaultValue = vscode.getState()?.outlineText || ""
   const [value, setValue] = useState(defaultValue)
 
   const handleChange = debounce((getVal: () => string) => {
-    const outlineText = getVal()
-
-    const text = outlineToMarkdown(outlineText)
-    const formattedText = formatText(text)
-    vscode.setState({ outlineText })
+    const text = getVal()
+    vscode.setState({ outlineText: text })
     vscode.postMessage({
       type: "add",
-      text: formattedText,
+      text: outlineToMarkdown(text),
     })
   }, 200)
 
@@ -44,7 +33,8 @@ export function App({ vscode }: { vscode: any }) {
           // NOTE: if this gets triggered, the editor will re-render and lose the cursor position
           // Try to avoid if possible
           if (
-            !isBasicallySame(formatText(outlineToMarkdown(currentText)), text)
+            !isBasicallySame(currentText, text) &&
+            !isBasicallySame(formatText(currentText), text)
           ) {
             const outlineText = markdownToOutline(text)
             console.log("update")
