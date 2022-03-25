@@ -17,7 +17,7 @@ export const vsCodeTheme = {
 
   toolbarBackground: "var(--vscode-button-background)",
   toolbarHoverBackground: "var(--vscode-button-hoverBackground)",
-  toolbarInput: "var(--vscode-button-secondaryForeground)",
+  toolbarInput: "var(--vscode-button-background)",
   toolbarItem: "var(--vscode-button-foreground)",
 
   tableDivider: "var(--vscode-editorRuler-foreground)",
