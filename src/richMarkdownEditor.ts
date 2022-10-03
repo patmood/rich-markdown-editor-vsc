@@ -71,6 +71,9 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
       switch (e.type) {
         case "add":
           return this.updateTextDocument(document, e.text)
+        case "openLink":
+          vscode.env.openExternal(vscode.Uri.parse(e.text));
+          return true;
       }
     })
 

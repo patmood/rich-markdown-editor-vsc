@@ -70,6 +70,12 @@ export function App({ vscode }: { vscode: any }) {
         defaultValue={defaultValue}
         value={value}
         onChange={handleChange}
+        onClickLink={(href) => {
+          vscode.postMessage({
+            type: "openLink",
+            text: href
+          })}
+        }
         autoFocus
       />
     </div>
