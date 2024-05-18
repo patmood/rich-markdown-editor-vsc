@@ -42,8 +42,8 @@ export function markdownToOutline(markdownText: string) {
 }
 
 export function isBasicallySame(a = "", b = "") {
-  // Remove slashes and trailing whitespace to compare outline and vanilla markdown strings
-  return a.replace(SLASH_REG, "").trim() === b.replace(SLASH_REG, "").trim()
+  // Remove slashes and trailing whitespace, normalize EOL-characters to compare outline and vanilla markdown strings
+  return a.replace(SLASH_REG, "").replace(/\r\n/g, "\n").trim() === b.replace(SLASH_REG, "").replace(/\r\n/g, "\n").trim()
 }
 
 export function formatText(text = "") {
