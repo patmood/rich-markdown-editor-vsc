@@ -4,6 +4,7 @@
   "version": "1.0.3",
   "description": "Edit markdown files in preview mode with a rich text editor",
   "main": "./out/extension.js",
+  "browser": "./out/extension.js",
   "engines": {
     "vscode": "^1.52.0"
   },

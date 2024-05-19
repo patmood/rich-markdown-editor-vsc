@@ -72,8 +72,8 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
         case "add":
           return this.updateTextDocument(document, e.text)
         case "openLink":
-          vscode.env.openExternal(vscode.Uri.parse(e.text));
-          return true;
+          vscode.env.openExternal(vscode.Uri.parse(e.text))
+          return true
       }
     })
 
@@ -126,7 +126,7 @@ export class RichMarkdownEditor implements vscode.CustomTextEditorProvider {
         </style>
 			</head>
 			<body>
-        <main id="app">Loading...</main>				
+        <main id="app">Loading...</main>
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`
