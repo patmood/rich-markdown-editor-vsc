@@ -18,6 +18,7 @@
   "activationEvents": [
     "onCustomEditor:markdownCustom.richMarkdownEditor"
   ],
+  "icon": "./icon.png",
   "contributes": {
     "customEditors": [
       {
