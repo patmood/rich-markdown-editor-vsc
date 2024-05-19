@@ -1,4 +1,3 @@
-import frontMatter from "front-matter"
 import prettier from "prettier/standalone"
 import prettierMd from "prettier/parser-markdown"
 
@@ -20,7 +19,7 @@ export function getNonce() {
 export function debounce(func: (...args: any) => any, timeout = 300) {
   let timer: NodeJS.Timeout | undefined
   return (...args: any) => {
-    clearTimeout(timer)
+    if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       timer = undefined
       func.apply(this, args)
