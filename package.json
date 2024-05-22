@@ -1,12 +1,12 @@
 {
   "name": "rich-markdown-editor",
   "displayName": "Rich Markdown Editor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Edit markdown files in preview mode with a rich text editor",
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.75"
   },
   "publisher": "patmood",
   "repository": {
@@ -16,9 +16,6 @@
   "bugs": {
     "url": "https://github.com/patmood/rich-markdown-editor-vsc/issues"
   },
-  "activationEvents": [
-    "onCustomEditor:markdownCustom.richMarkdownEditor"
-  ],
   "icon": "./icon.png",
   "contributes": {
     "customEditors": [
