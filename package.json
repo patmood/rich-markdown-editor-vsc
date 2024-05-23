@@ -6,7 +6,7 @@
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
   "engines": {
-    "vscode": "^1.75"
+    "vscode": "^1.75.0"
   },
   "publisher": "patmood",
   "repository": {
